@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">App</string>
+
+    <!--FORM NAMES-->
+    <string name="registerFormName">SIGNUP</string>
+    <string name="loginFormName">LOGIN</string>
+
+    <!--FORM INPUT HINTS-->
+    <string name="formUsernameHint">Username</string>
+    <string name="formEmailHint">Email Address</string>
+    <string name="formPasswordHint">Password</string>
+    <string name="formConfirmPasswordHint">Confirm your password</string>
+
+    <!--FORM BUTTONS-->
+    <string name="loginButtonName">LOGIN</string>
+    <string name="registerButtonName">SIGNUP</string>
+    <string name="forgotPasswordButtonName">Forgot Password?</string>
+    <string name="resetPasswordButtonName">Reset Password</string>
+    <string name="resetBackButtonName">Back to login</string>
+
+    <!--CHECK BOX-->
+    <string name="rememberMeCheckName">Remember me</string>
+
+</resources>

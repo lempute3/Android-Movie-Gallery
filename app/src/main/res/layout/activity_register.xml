@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/form_activity_background"
+    tools:context=".RegisterActivity">
+
+    <!--Register Form-->
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/form_background"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335"
+        >
+
+        <!--Form Selection-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/r_loginSectionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/loginButtonName"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/r_registerSectionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/r_loginSectionBtn"
+                android:background="@drawable/right_rounded_button"
+                android:text="@string/registerButtonName"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+        <!--Username Field-->
+        <EditText
+            android:id="@+id/r_uidInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:autofillHints="email"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/colorSecondary"
+            android:backgroundTint="@color/colorSecondary"
+            android:hint="@string/formUsernameHint"
+            android:inputType="text"
+            />
+
+        <!--Email Field-->
+        <EditText
+            android:id="@+id/r_emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:autofillHints="email"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/colorSecondary"
+            android:backgroundTint="@color/colorSecondary"
+            android:hint="@string/formEmailHint"
+            android:inputType="textEmailAddress" />
+
+        <!--Password Field-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/r_pwdInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/colorSecondary"
+                android:backgroundTint="@color/colorSecondary"
+                android:hint="@string/formPasswordHint"
+                android:autofillHints="password"
+                android:inputType="textPassword"
+                />
+
+            <CheckBox
+                android:id="@+id/r_showPwdCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:button="@drawable/ic_visibility_selector"
+                android:buttonTint="@color/colorSecondary"
+                />
+
+        </LinearLayout>
+
+
+        <!--Register Button-->
+        <Button
+            android:id="@+id/r_registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/buttonBgColor_1"
+            android:radius="100dp"
+            android:text="@string/registerButtonName"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

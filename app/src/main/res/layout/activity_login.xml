@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/form_activity_background"
+    tools:context=".LoginActivity">
+
+    <!--Login Form-->
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/form_background"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335"
+        >
+
+        <!--Form Selection-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/l_loginSectionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/left_rounded_button"
+                android:text="@string/loginButtonName"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/l_registerSectionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/l_loginSectionBtn"
+                android:background="@android:color/transparent"
+                android:text="@string/registerButtonName"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+
+        <!--Username Field-->
+        <EditText
+            android:id="@+id/l_uidInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:autofillHints="username"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/colorSecondary"
+            android:backgroundTint="@color/colorSecondary"
+            android:hint="@string/formUsernameHint"
+            android:inputType="text" />
+
+        <!--Password Field-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/l_pwdInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/colorSecondary"
+                android:backgroundTint="@color/colorSecondary"
+                android:hint="@string/formPasswordHint"
+                android:autofillHints="password"
+                android:inputType="textPassword"
+                />
+            
+            <CheckBox
+                android:id="@+id/l_showPwdCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:button="@drawable/ic_visibility_selector"
+                android:buttonTint="@color/colorSecondary"
+                />
+
+        </LinearLayout>
+
+
+        <!--Remember Me Check-->
+        <CheckBox
+            android:id="@+id/l_rememberMeCheck"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="-24dp"
+            app:layout_constraintTop_toBottomOf="@+id/l_pwdInput"
+            android:text="@string/rememberMeCheckName"
+            android:buttonTint="@color/colorSecondary"
+            android:scaleX="0.80"
+            android:scaleY="0.80"
+            />
+
+        <!--Login Button-->
+        <Button
+            android:id="@+id/l_loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonBgColor_1"
+            android:radius="100dp"
+            android:text="@string/loginButtonName"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/l_forgotPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgotPasswordButtonName"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/l_loginBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
