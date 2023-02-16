@@ -22,24 +22,43 @@
         app:layout_constraintVertical_bias="0.335"
         >
 
+        <!--Form Label-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:text="@string/resetFormName"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15sp"
+            android:text="@string/resetFormParagraph"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+
         <!--Username Field-->
         <EditText
-            android:id="@+id/r_emailInput"
+            android:id="@+id/res_email_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:autofillHints="emailAddress"
-            android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorSecondary"
             android:backgroundTint="@color/colorSecondary"
             android:hint="@string/formEmailHint"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
 
         <!--Login Button-->
         <Button
-            android:id="@+id/r_sendBtn"
+            android:id="@+id/res_send_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/buttonBgColor_1"
@@ -50,13 +69,13 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/r_backBtn"
+            android:id="@+id/res_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/resetBackButtonName"
             android:textSize="12sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/l_loginBtn"
+            app:layout_constraintTop_toBottomOf="@+id/l_login_btn"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"

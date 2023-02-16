@@ -17,11 +17,21 @@
     <color name="ic_launcher_background_color">#f25f4c</color>
 
     <!--Form-->
-    <!--<color name="formBackgroundColor">#fffffe</color>-->
     <color name="formBackgroundColor">#fffffe</color>
 
     <!--Form Buttons-->
-    <!--<color name="buttonBgColor_1">#ff8906</color>-->
     <color name="buttonBgColor_1">#ff8906</color>
+
+    <!--Main-->
+    <color name="mainBackgroundColor">#121313</color>
+
+    <!--Toolbar-->
+    <color name="toolbarBackgroundColor">#1f1f1e</color>
+    <color name="toolbarTintColor">@color/white</color>
+    <color name="toolbarTextColor">#e3e3e3</color>
+
+    <!--Main Nav-->
+    <color name="navBackgroundColor">#1f1f1e</color>
+    <color name="navTextColor">#e3e3e3</color>
 
 </resources>

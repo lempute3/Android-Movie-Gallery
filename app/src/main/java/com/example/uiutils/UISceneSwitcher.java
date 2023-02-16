@@ -1,8 +1,7 @@
-package uiutils;
+package com.example.uiutils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 public class UISceneSwitcher implements View.OnClickListener {
@@ -14,10 +13,12 @@ public class UISceneSwitcher implements View.OnClickListener {
         mTargetActivity = targetActivity;
     }
 
-    @Override
-    public void onClick(View view) {
+    public void setActive() {
         Intent intent = new Intent(mCurrentActivity, mTargetActivity);
         mCurrentActivity.startActivity(intent);
         mCurrentActivity.finish();
     }
+
+    @Override
+    public void onClick(View view) { setActive(); }
 }

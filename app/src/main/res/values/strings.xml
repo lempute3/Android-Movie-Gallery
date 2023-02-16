@@ -4,6 +4,10 @@
     <!--FORM NAMES-->
     <string name="registerFormName">SIGNUP</string>
     <string name="loginFormName">LOGIN</string>
+    <string name="resetFormName">RESET YOUR PASSWORD</string>
+
+    <!--FORM PARAGRAPHS-->
+    <string name="resetFormParagraph">Please enter your email address and you will receive a link to create a new password via email</string>
 
     <!--FORM INPUT HINTS-->
     <string name="formUsernameHint">Username</string>
@@ -18,7 +22,13 @@
     <string name="resetPasswordButtonName">Reset Password</string>
     <string name="resetBackButtonName">Back to login</string>
 
+    <!--NAV-->
+    <string name="openNav">"Open navigation drawer"</string>
+    <string name="closeNav">"Open navigation drawer"</string>
+
     <!--CHECK BOX-->
     <string name="rememberMeCheckName">Remember me</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "129030567966",
+    "project_id": "flickframe-c767b",
+    "storage_bucket": "flickframe-c767b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129030567966:android:86b35181fc5f1391b2d60f",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129030567966-ftopcivhovfml4d2f47vrjj78tr9l3c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWWVyqeefc0DyZiGuC0YWyJD6ToUEvYJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129030567966-ftopcivhovfml4d2f47vrjj78tr9l3c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

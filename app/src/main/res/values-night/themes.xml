@@ -11,6 +11,15 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/opensans</item>
     </style>
+
+    <style name="ToolBarTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textColorSecondary">@color/colorPrimary</item>
+        <item name="android:tint">@color/colorPrimary</item>
+        <item name="iconTint">@color/colorPrimary</item>
+    </style>
+
 </resources>
