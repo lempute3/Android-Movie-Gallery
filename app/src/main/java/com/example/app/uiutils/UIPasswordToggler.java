@@ -1,4 +1,4 @@
-package com.example.uiutils;
+package com.example.app.uiutils;
 
 import android.text.method.PasswordTransformationMethod;
 import android.widget.CompoundButton;

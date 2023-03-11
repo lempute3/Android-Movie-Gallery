@@ -28,7 +28,8 @@
 
     <!--CHECK BOX-->
     <string name="rememberMeCheckName">Remember me</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!--FRAGMENTS-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -47,9 +47,9 @@
                     android:hint="Search"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
+                    android:singleLine="true"
                     android:maxLines="1"
                     android:paddingLeft="2dp"
-                    android:singleLine="true"
                     android:textColor="#ffffff"
                     android:textColorHint="@color/toolbarTextColor"
                     />
@@ -70,10 +70,9 @@
         </androidx.appcompat.widget.Toolbar>
 
         <FrameLayout
-            android:id="@+id/m_fragment_container"
+            android:id="@+id/m_fragment_container_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -88,6 +87,70 @@
         app:itemTextColor="@color/navTextColor"
         android:background="@color/navBackgroundColor"
         >
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            >
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="right"
+                android:letterSpacing="0.3"
+                android:paddingBottom="30dp"
+                android:text="WELCOME"
+                android:textColor="@color/navBackgroundColor"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/m_username_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="80dp"
+                android:text="LEMPUTE3"
+                android:textColor="@color/navBackgroundColor"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/m_username_label"
+                android:layout_marginBottom="20dp"
+                >
+
+                <ImageView
+                    android:id="@+id/m_profile_circle"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/navBackgroundColor" />
+
+                <TextView
+                    android:id="@+id/m_profile_circle_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="L"
+                    android:textColor="#ffffff"
+                    android:textColorHint="@color/navTextColor"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </com.google.android.material.navigation.NavigationView>
 

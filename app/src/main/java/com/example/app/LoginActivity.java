@@ -11,14 +11,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dbconn.FirebaseHelper;
-import com.example.dbconn.OnTaskCompletionListener;
-import com.example.uiutils.UIPasswordToggler;
-import com.example.uiutils.UISceneSwitcher;
+import com.example.app.firebase.FirebaseHelper;
+import com.example.app.firebase.OnTaskCompletionListener;
+import com.example.app.uiutils.UIPasswordToggler;
+import com.example.app.uiutils.UIActivitySwitcher;
+import com.example.app.utils.RememberMe;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseHelper firebaseHelper = FirebaseHelper.getInstance();
+    private FirebaseHelper mFirebaseHelper = FirebaseHelper.getInstance();
 
     private EditText mEmailInput, mPasswordInput;
     private Button mRegisterSectionBtn, mLoginBtn;
@@ -26,7 +27,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView mForgotPasswordBtn;
     private ProgressBar mProgressBar;
 
-    private UISceneSwitcher mMainActivity, mResetActivity, mRegisterActivity;
+    private UIActivitySwitcher mMainActivity, mResetActivity, mRegisterActivity;
+    private RememberMe mAutoLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         /*ACTIVITIES*/
-        mMainActivity = new UISceneSwitcher(this, MainActivity.class);
-        mResetActivity = new UISceneSwitcher(this, ResetActivity.class);
-        mRegisterActivity = new UISceneSwitcher(this, RegisterActivity.class);
+        mMainActivity = new UIActivitySwitcher(this, MainActivity.class);
+        mResetActivity = new UIActivitySwitcher(this, ResetActivity.class);
+        mRegisterActivity = new UIActivitySwitcher(this, RegisterActivity.class);
 
         /*VIEWS*/
         mProgressBar = findViewById(R.id.l_progress_bar);
@@ -56,21 +58,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         /*EVENT LISTENERS*/
         mLoginBtn.setOnClickListener(this);
-        mRegisterSectionBtn.setOnClickListener(mRegisterActivity);
-        mForgotPasswordBtn.setOnClickListener(mResetActivity);
+        mRegisterSectionBtn.setOnClickListener(this);
+        mForgotPasswordBtn.setOnClickListener(this);
         mShowPasswordCheck.setOnCheckedChangeListener(new UIPasswordToggler(mPasswordInput));
     }
 
     void loginUser(String email, String password) {
 
-        /*Starts registration process*/
+        /*Validate user login info*/
+        if (!validate(email, password)) return;
+
+        /*Starts login process*/
         mProgressBar.setVisibility(View.VISIBLE);
-        firebaseHelper.loginUser(email, password, new OnTaskCompletionListener() {
+        mFirebaseHelper.loginUser(email, password, new OnTaskCompletionListener() {
             @Override
             public void onSuccess() {
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_LONG).show();
                 mProgressBar.setVisibility(View.GONE);
-                mMainActivity.setActive();
+                mMainActivity.setScene();
             }
 
             @Override
@@ -81,6 +86,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    private boolean validate(String email, String password) {
+
+        if (email.isEmpty()) {
+            mEmailInput.setError("Email is required!");
+            mEmailInput.requestFocus();
+            return false;
+        }
+
+        if (password.isEmpty()) {
+            mPasswordInput.setError("Password is required!");
+            mPasswordInput.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -89,9 +111,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         email = mEmailInput.getText().toString().trim();
         password = mPasswordInput.getText().toString().trim();
 
-        if (view.getId() == R.id.l_login_btn) {
-            mMainActivity.setActive();
-            /*loginUser(email, password);*/
+        switch (view.getId()) {
+            case R.id.l_register_section_btn:
+                mRegisterActivity.setScene();
+                break;
+
+            case R.id.l_forgot_pwd:
+                mResetActivity.setScene();
+                break;
+
+            case R.id.l_login_btn:
+                /*loginUser(email, password);*/
+                mMainActivity.setScene();
+                break;
+
+            default:
+                break;
         }
+
     }
 }

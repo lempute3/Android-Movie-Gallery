@@ -9,10 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dbconn.FirebaseHelper;
-import com.example.dbconn.OnTaskCompletionListener;
-import com.example.uiutils.UISceneSwitcher;
-import com.example.uiutils.UIValidationUtils;
+import com.example.app.firebase.FirebaseHelper;
+import com.example.app.firebase.OnTaskCompletionListener;
+import com.example.app.uiutils.UIActivitySwitcher;
+import com.example.app.utils.ValidationUtils;
 
 public class ResetActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,7 +22,7 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
     private Button mSendBtn;
     private TextView mBackBtn;
 
-    private UISceneSwitcher mRegisterActivity;
+    private UIActivitySwitcher mRegisterActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_reset);
 
         /*ACTIVITIES*/
-        mRegisterActivity = new UISceneSwitcher(this, LoginActivity.class);
+        mRegisterActivity = new UIActivitySwitcher(this, LoginActivity.class);
 
         /*INPUTS*/
         mEmailInput = findViewById(R.id.res_email_input);
@@ -40,11 +40,14 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
         mBackBtn = findViewById(R.id.res_back_btn);
 
         /*EVENT LISTENERS*/
-        mBackBtn.setOnClickListener(mRegisterActivity);
+        mBackBtn.setOnClickListener(this);
         mSendBtn.setOnClickListener(this);
     }
 
     private void resetPassword(String email) {
+
+        if (!validate(email)) return;
+
         firebaseHelper.resetPassword(email, new OnTaskCompletionListener() {
 
             @Override
@@ -67,7 +70,7 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
             return false;
         }
 
-        if (!UIValidationUtils.isValidEmail(email)) {
+        if (!ValidationUtils.isValidEmail(email)) {
             mEmailInput.setError("Please provide valid email!");
             mEmailInput.requestFocus();
             return false;
@@ -82,8 +85,17 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
         /*Parses user email from input fields*/
         String email = mEmailInput.getText().toString().trim();
 
-        if (view.getId() == R.id.res_send_btn) {
-            resetPassword(email);
+        switch (view.getId()) {
+            case R.id.res_back_btn:
+                mRegisterActivity.setScene();
+                break;
+
+            case R.id.res_send_btn:
+                resetPassword(email);
+                break;
+
+            default:
+                break;
         }
     }
 }

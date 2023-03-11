@@ -24,6 +24,7 @@
 
     <!--Main-->
     <color name="mainBackgroundColor">#121313</color>
+    <color name="mainTextColor">#e3e3e3</color>
 
     <!--Toolbar-->
     <color name="toolbarBackgroundColor">#1f1f1e</color>
@@ -33,5 +34,9 @@
     <!--Main Nav-->
     <color name="navBackgroundColor">#1f1f1e</color>
     <color name="navTextColor">#e3e3e3</color>
+
+    <!--ItemView-->
+    <color name="viewItemBackgroundColor">#1f1f1e</color>
+    <color name="viewItemTextColor">#e3e3e3</color>
 
 </resources>

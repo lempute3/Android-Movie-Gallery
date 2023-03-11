@@ -3,6 +3,7 @@ package com.example.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,12 +12,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dbconn.FirebaseHelper;
-import com.example.dbconn.OnTaskCompletionListener;
+import com.example.app.firebase.FirebaseHelper;
+import com.example.app.firebase.OnTaskCompletionListener;
 
-import com.example.uiutils.UIPasswordToggler;
-import com.example.uiutils.UISceneSwitcher;
-import com.example.uiutils.UIValidationUtils;
+import com.example.app.uiutils.UIPasswordToggler;
+import com.example.app.uiutils.UIActivitySwitcher;
+import com.example.app.utils.ValidationUtils;
+
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView mForgotPwd;
     private ProgressBar mProgressBar;
 
-    private UISceneSwitcher mLoginActivity;
+    private UIActivitySwitcher mLoginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         /*ACTIVITIES*/
-        mLoginActivity = new UISceneSwitcher(this, LoginActivity.class);
+        mLoginActivity = new UIActivitySwitcher(this, LoginActivity.class);
 
         /*VIEWS*/
         mProgressBar = findViewById(R.id.r_progress_bar);
@@ -54,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mRegisterBtn = findViewById(R.id.r_register_btn);
 
         /*EVENT LISTENERS*/
-        mLoginSectionBtn.setOnClickListener(mLoginActivity);
+        mLoginSectionBtn.setOnClickListener(this);
         mShowPasswordCheck.setOnCheckedChangeListener(new UIPasswordToggler(mPasswordInput));
         mRegisterBtn.setOnClickListener(this);
 
@@ -62,17 +65,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void registerUser(String username, String email, String password) {
 
-        /*Validate user info*/
-        if (!validate(username, email, password)) { return; }
+        /*Validate user register info*/
+        if (!validate(username, email, password)) return;
 
         /*Starts registration process*/
         mProgressBar.setVisibility(View.VISIBLE);
-        firebaseHelper.registerUser("Users", email, username, password, new OnTaskCompletionListener() {
+        firebaseHelper.registerUser(email, username, password, new OnTaskCompletionListener() {
             @Override
             public void onSuccess() {
                 Toast.makeText(getApplicationContext(), "Registration Successful!", Toast.LENGTH_LONG).show();
                 mProgressBar.setVisibility(View.GONE);
-                mLoginActivity.setActive();
+                mLoginActivity.setScene();
             }
 
             @Override
@@ -86,54 +89,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private boolean validate(String username, String email, String password) {
 
-        if (username.isEmpty()) {
-            mUsernameInput.setError("Username is required!");
+        List<String> usernameRequirements = ValidationUtils.isValidUsername(username);
+        if (!usernameRequirements.isEmpty()) {
+            String message = "Your username is missing: " + TextUtils.join(", ", usernameRequirements);
+            mUsernameInput.setError(message);
             mUsernameInput.requestFocus();
             return false;
         }
 
-        if (!UIValidationUtils.isUsernameLongEnough(username)) {
-            mUsernameInput.setError(String.format("Min username length should be %d characters!", UIValidationUtils.MIN_USERNAME_LENGTH));
-            mUsernameInput.requestFocus();
-            return false;
-        }
-
-        if (!UIValidationUtils.isValidUsername(username)) {
-            mUsernameInput.setError("Please provide valid username!");
-            mUsernameInput.requestFocus();
-            return false;
-        }
-
-        if (email.isEmpty()) {
-            mEmailInput.setError("Email is required!");
-            mEmailInput.requestFocus();
-            return false;
-        }
-
-        if (!UIValidationUtils.isValidEmail(email)) {
+        if (!ValidationUtils.isValidEmail(email)) {
             mEmailInput.setError("Please provide valid email!");
             mEmailInput.requestFocus();
             return false;
         }
 
-        if (password.isEmpty()) {
-            mPasswordInput.setError("Password is required!");
+        List<String> passwordRequirements = ValidationUtils.isValidPassword(password);
+        if (!passwordRequirements.isEmpty()) {
+            String message = "Your password is missing: " + TextUtils.join(", ", passwordRequirements);
+            mPasswordInput.setError(message);
             mPasswordInput.requestFocus();
             return false;
         }
-
-        if (!UIValidationUtils.isPasswordLongEnough(password)) {
-            mPasswordInput.setError(String.format("Min password length should be %d characters!", UIValidationUtils.MIN_PASSWORD_LENGTH));
-            mPasswordInput.requestFocus();
-            return false;
-        }
-
-        /*TODO: Not working*/
-        /*if (!UIValidationUtils.isValidPassword(password)) {
-            mPwdInput.setError("Password needs to contain at least one digit, one lowercase letter, ");
-            mPwdInput.requestFocus();
-            return false;
-        }*/
 
         return true;
     }
@@ -148,9 +124,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         password = mPasswordInput.getText().toString().trim();
 
         switch (view.getId()) {
+            case R.id.r_login_section_btn:
+                mLoginActivity.setScene();
+                break;
+
             case R.id.r_register_btn:
                 registerUser(username, email, password);
                 break;
+
             default:
                 break;
         }

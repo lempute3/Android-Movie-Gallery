@@ -1,24 +1,21 @@
-package com.example.uiutils;
+package com.example.app.uiutils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
 
-public class UISceneSwitcher implements View.OnClickListener {
+public class UIActivitySwitcher {
     private Activity mCurrentActivity;
     private Class mTargetActivity;
 
-    public UISceneSwitcher(Activity currentActivity, Class targetActivity) {
+    public UIActivitySwitcher(Activity currentActivity, Class targetActivity) {
         mCurrentActivity = currentActivity;
         mTargetActivity = targetActivity;
     }
 
-    public void setActive() {
+    public void setScene() {
+        if (mCurrentActivity == null || mTargetActivity == null)  return;
         Intent intent = new Intent(mCurrentActivity, mTargetActivity);
         mCurrentActivity.startActivity(intent);
         mCurrentActivity.finish();
     }
-
-    @Override
-    public void onClick(View view) { setActive(); }
 }
