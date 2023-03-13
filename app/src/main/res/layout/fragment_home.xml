@@ -7,16 +7,27 @@
     tools:context=".HomeFragment"
     >
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/view_header"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/h_recycler_view"
+    <FrameLayout
+        android:id="@+id/h_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/view_header"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/h_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </FrameLayout>
+
+
+
 
 </RelativeLayout>

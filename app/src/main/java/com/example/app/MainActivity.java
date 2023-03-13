@@ -1,7 +1,6 @@
 package com.example.app;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,22 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.firebase.FirebaseHelper;
 import com.example.app.firebase.OnUserDataFetchListener;
 import com.example.app.firebase.User;
-import com.example.app.tmdb.request.OnResponseCompletionListener;
-import com.example.app.tmdb.request.RetrofitHelper;
-import com.example.app.uiutils.UIFragmentSwitcher;
 import com.example.app.uiutils.UIActivitySwitcher;
-import com.example.app.utils.ValidationUtils;
+import com.example.app.uiutils.UIFragmentSwitcher;
 import com.example.app.viewmodels.MovieListViewModel;
-import com.example.tmdb.models.MovieModel;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, TextView.OnEditorActionListener {
@@ -76,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         mNavUsernameLabel = findViewById(R.id.m_username_label);
         mNavProfileCircleLabel = findViewById(R.id.m_profile_circle_label);;
 
-        firebaseHelper.getCurrentUserData(new OnUserDataFetchListener() {
+        /*firebaseHelper.getCurrentUserData(new OnUserDataFetchListener() {
             @Override
             public void onFetchSuccess(User user) {
 
@@ -91,7 +83,7 @@ public class MainActivity extends AppCompatActivity
             public void onFetchFailure(String message) {
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
         /*INPUTS*/
         mSearchInput = findViewById(R.id.m_search_view);
@@ -117,14 +109,11 @@ public class MainActivity extends AppCompatActivity
         mSearchClearBtn.setOnClickListener(this);
         mNavigationView.setNavigationItemSelectedListener(this);
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+
         mActionBarDrawerToggle.syncState();
 
         mHomeFragment.setFragment();
         mNavigationView.setCheckedItem(R.id.nav_home);
-    }
-
-    private void searchMovieApi(String query, int page) {
-        mMovieListViewModel.searchMovieApi(query, page);
     }
 
     @Override
@@ -185,7 +174,6 @@ public class MainActivity extends AppCompatActivity
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             String searchQuery = mSearchInput.getText().toString();
             mMovieListViewModel.searchMovieApi(searchQuery, 1);
-            Toast.makeText(this, searchQuery, Toast.LENGTH_LONG).show();
             return true;
         }
 

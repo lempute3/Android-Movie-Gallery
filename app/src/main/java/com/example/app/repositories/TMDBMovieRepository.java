@@ -15,6 +15,9 @@ public class TMDBMovieRepository
 
     private TMDBMovieApiClient mTMDBMovieApiClient;
 
+    private String mQuery;
+    private int mPageNumber;
+
     private TMDBMovieRepository() {
         mTMDBMovieApiClient = TMDBMovieApiClient.getInstance();
     }
@@ -27,6 +30,13 @@ public class TMDBMovieRepository
     }
 
     public MutableLiveData<List<MovieModel>> getMovies() { return  mTMDBMovieApiClient.getMovies(); }
-    public void searchMovieApi(String query, int page) { mTMDBMovieApiClient.searchMoviesApi(query, page); }
+    public void searchMovieApi(String query, int page) {
+        mQuery = query;
+        mPageNumber = page;
+        mTMDBMovieApiClient.searchMoviesApi(query, page);
+    }
+    public void searchNextPage() {
+        searchMovieApi(mQuery, mPageNumber+1);
+    }
 
 }

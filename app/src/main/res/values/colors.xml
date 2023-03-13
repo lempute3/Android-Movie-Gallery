@@ -39,4 +39,8 @@
     <color name="viewItemBackgroundColor">#1f1f1e</color>
     <color name="viewItemTextColor">#e3e3e3</color>
 
+    <!--Movie Detail Fragment-->
+    <color name="movieDetailBackground">#1f1f1e</color>
+    <color name="movieDetailTextColor">#e3e3e3</color>
+
 </resources>

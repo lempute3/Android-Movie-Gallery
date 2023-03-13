@@ -97,12 +97,15 @@ public class TMDBMovieApiClient {
                         if (!response.isSuccessful())
                             throw new IOException("Response error: " + response.errorBody().string());
 
+                        // Gets movie list from a response.
+                        // Removes any movie that has no rating.
                         List<MovieModel> movieList = new ArrayList<>( ( (MovieSearchResponse) response.body()).getMovieList() );
+                        movieList.removeIf(movie -> movie.getVoteAverage() <= 0.0f);
 
                         if (movieList.isEmpty() || movieList == null)
                             throw new IOException("Response error: request empty");
 
-                        // Sending requested data to LiveData.
+                        // Sends requested data to LiveData.
                         if (mPageNumber == 1) {
                             Log.e("TAG", movieList.get(1).getTitle());
                             mMovies.postValue(movieList);
@@ -125,55 +128,6 @@ public class TMDBMovieApiClient {
                     mMovies.postValue(null);
                 }
             });
-
-            /*try {
-
-                // this is synchronous execution,
-                // it is running inside a class that is implementing a Runnable interface running on a separate thread.
-                Response response = getMovieList(mQuery, mPageNumber).execute();
-
-                if (isRequestCancel)
-                    return;
-
-                if (response.isSuccessful()) {
-                    List<MovieModel> movieList = new ArrayList<>( ( (MovieSearchResponse) response.body()).getMovieList() );
-
-                    // Sending requested data to LiveData.
-                    if (mPageNumber == 1) {
-                        Log.e("TAG", movieList.get(1).getTitle());
-                        mMovies.postValue(movieList);
-                    } else {
-                        List<MovieModel> currentMovies = mMovies.getValue();
-                        currentMovies.addAll(movieList);
-                        mMovies.postValue(currentMovies);
-                    }
-                } else {
-                    Log.e("TAG", response.errorBody().string());
-                    mMovies.postValue(null);
-                }
-
-                if (isRequestCancel)
-                    throw new IOException("Response error: request was canceled");
-
-                if (!response.isSuccessful())
-                    throw new IOException("Response error: " + response.errorBody().string());
-
-                List<MovieModel> movieList = new ArrayList<>( ( (MovieSearchResponse) response.body()).getMovieList() );
-
-                // Sending requested data to LiveData.
-                if (mPageNumber == 1) {
-                    mMovies.postValue(movieList);
-                } else {
-                    List<MovieModel> currentMovies = mMovies.getValue();
-                    currentMovies.addAll(movieList);
-                    mMovies.postValue(currentMovies);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("TAG", e.getMessage());
-                mMovies.postValue(null);
-            }*/
         }
 
 

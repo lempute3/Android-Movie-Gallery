@@ -1,5 +1,7 @@
 package com.example.app.uiutils;
 
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -16,6 +18,14 @@ public class UIFragmentSwitcher {
     }
     public void setFragment() {
         if (mFragmentManager == null || mTargetFragment == null) return;
-        mFragmentManager.beginTransaction().replace(mContainerViewId, mTargetFragment).commit();
+
+        mFragmentManager.beginTransaction().replace(mContainerViewId, mTargetFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void setBundle(Bundle bundle) {
+        if (mFragmentManager == null || mTargetFragment == null) return;
+        mTargetFragment.setArguments(bundle);
     }
 }
