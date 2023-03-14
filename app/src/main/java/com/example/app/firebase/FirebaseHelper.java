@@ -51,7 +51,7 @@ public class FirebaseHelper {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        User user = snapshot.getValue(User.class);
+                        FirebaseUserModel user = snapshot.getValue(FirebaseUserModel.class);
                         if (user != null) listener.onFetchSuccess(user);
                     }
 
@@ -79,7 +79,7 @@ public class FirebaseHelper {
     /* This method is used to register a new user in a Firebase database
        by creating a new user in Firebase authentication and storing the user's information in the database. */
     {
-        User user = new User(email, username);
+        FirebaseUserModel user = new FirebaseUserModel(email, username);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     mUsersCollection.child(mAuth.getCurrentUser().getUid()).setValue(user)

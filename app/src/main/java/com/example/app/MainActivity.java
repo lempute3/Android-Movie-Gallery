@@ -20,8 +20,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.firebase.FirebaseHelper;
-import com.example.app.firebase.OnUserDataFetchListener;
-import com.example.app.firebase.User;
 import com.example.app.uiutils.UIActivitySwitcher;
 import com.example.app.uiutils.UIFragmentSwitcher;
 import com.example.app.viewmodels.MovieListViewModel;
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity
     private ImageView mSearchClearBtn;
 
     private UIActivitySwitcher mLoginActivity;
-    private UIFragmentSwitcher mHomeFragment, mGalleryFragment, mAboutFragment;
+    private UIFragmentSwitcher mHomeFragment, mWatchlistFragment, mAboutFragment;
 
 
     @Override
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         /*FRAGMENTS*/
         mFragmentLayout = findViewById(R.id.m_fragment_container_layout);
         mHomeFragment     =   new UIFragmentSwitcher (mFragmentLayout.getId(), getSupportFragmentManager(), new HomeFragment());
-        mGalleryFragment  =   new UIFragmentSwitcher (mFragmentLayout.getId(), getSupportFragmentManager(), new GalleryFragment());
+        mWatchlistFragment =   new UIFragmentSwitcher (mFragmentLayout.getId(), getSupportFragmentManager(), new WatchlistFragment());
         mAboutFragment    =   new UIFragmentSwitcher (mFragmentLayout.getId(), getSupportFragmentManager(), new AboutFragment());
 
         /*VIEWS*/
@@ -124,8 +122,8 @@ public class MainActivity extends AppCompatActivity
                 mHomeFragment.setFragment();
                 break;
 
-            case R.id.nav_gallery:
-                mGalleryFragment.setFragment();
+            case R.id.nav_watchlist:
+                mWatchlistFragment.setFragment();
                 break;
 
             case R.id.nav_about:

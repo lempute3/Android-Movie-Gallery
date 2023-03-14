@@ -1,12 +1,12 @@
 package com.example.app.firebase;
 
-public class User {
+public class FirebaseUserModel {
 
     private String email, username;
 
-    public  User() {}
+    public FirebaseUserModel() {}
 
-    public User(String email, String username) {
+    public FirebaseUserModel(String email, String username) {
         this.email = email;
         this.username = username;
     }

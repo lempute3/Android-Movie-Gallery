@@ -67,7 +67,7 @@ public class TMDBMovieApiClient {
 
     private class RetrieveMoviesRunnable implements Runnable {
 
-        private RetrofitHelper mRetrofitHelper;
+        private TMDBRetrofitHelper mRetrofitHelper;
         private TMDBApi mTMDBApi;
 
         private String mQuery;
@@ -75,7 +75,7 @@ public class TMDBMovieApiClient {
         private boolean isRequestCancel;
 
         RetrieveMoviesRunnable(String query, int page) {
-            mRetrofitHelper = RetrofitHelper.getInstance();
+            mRetrofitHelper = TMDBRetrofitHelper.getInstance();
             mTMDBApi = mRetrofitHelper.getTMDBApi();
 
             mQuery = query;

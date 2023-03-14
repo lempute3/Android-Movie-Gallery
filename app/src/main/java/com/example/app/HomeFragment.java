@@ -16,16 +16,15 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.app.tmdb.request.RetrofitHelper;
+import com.example.app.tmdb.request.TMDBRetrofitHelper;
 import com.example.app.uiutils.UIFragmentSwitcher;
 import com.example.app.viewmodels.MovieListViewModel;
 import com.example.recycler.MovieRecyclerViewAdapter;
 import com.example.recycler.RecyclerViewInterface;
-import com.google.android.material.navigation.NavigationView;
 
 public class HomeFragment extends Fragment implements RecyclerViewInterface {
 
-    private RetrofitHelper retrofitHelper = RetrofitHelper.getInstance();
+    private TMDBRetrofitHelper retrofitHelper = TMDBRetrofitHelper.getInstance();
     private MovieListViewModel mMovieListViewModel;
 
     private Context mContext;

@@ -6,15 +6,15 @@ import com.example.app.utils.AppCredentials;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitHelper {
+public class TMDBRetrofitHelper {
 
-    private static RetrofitHelper instance;
+    private static TMDBRetrofitHelper instance;
 
     private Retrofit.Builder mRetrofitBuilder;
     private Retrofit mRetrofit;
     private TMDBApi mTMDbApi;
 
-    private RetrofitHelper() {
+    private TMDBRetrofitHelper() {
         mRetrofitBuilder = new Retrofit.Builder()
                 .baseUrl(AppCredentials.TMDB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
@@ -23,9 +23,9 @@ public class RetrofitHelper {
         mTMDbApi = mRetrofit.create(TMDBApi.class);
     }
 
-    public static RetrofitHelper getInstance() {
+    public static TMDBRetrofitHelper getInstance() {
         if (instance == null) {
-            instance = new RetrofitHelper();
+            instance = new TMDBRetrofitHelper();
         }
         return instance;
     }
