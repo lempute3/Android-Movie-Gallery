@@ -8,7 +8,7 @@
     >
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/movie_list_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -49,6 +49,15 @@
                     />
 
                 <TextView
+                    android:id="@+id/card_view_movie_release_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Released"
+                    android:textSize="15sp"
+                    android:textColor="@color/viewItemTextColor"
+                    />
+
+                <TextView
                     android:id="@+id/card_view_movie_genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,6 +69,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     >
 
@@ -68,6 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rating"
+                        android:textStyle="bold"
                         android:textSize="15sp"
                         android:textColor="@color/viewItemTextColor"
                         />

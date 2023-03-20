@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,10 +28,37 @@
             />
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/movie_liked"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_heart"
+                app:tint="@color/dark_orange"
+                />
+
+            <ImageView
+                android:id="@+id/movie_watchlist"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_clock"
+                app:tint="@color/dark_orange"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:orientation="vertical">
@@ -44,16 +72,18 @@
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/movie_genre"
+                android:id="@+id/movie_release_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/movieDetailTextColor"
-                android:textSize="20sp" />
+                android:text="Released"
+                android:textSize="20sp"
+                android:textColor="@color/viewItemTextColor"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -95,13 +125,13 @@
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/back_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_back_arrow"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_back_arrow"
             />
 
     </LinearLayout>

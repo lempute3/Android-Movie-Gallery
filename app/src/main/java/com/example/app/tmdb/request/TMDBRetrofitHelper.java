@@ -31,26 +31,4 @@ public class TMDBRetrofitHelper {
     }
 
     public TMDBApi getTMDBApi() { return mTMDbApi; }
-
-    /*public void getMovieList(String query, int page, final OnResponseCompletionListener listener) {
-        TMDBApi tmdbApi = mTMDbApi;
-        Call<MovieSearchResponse> responseCall = tmdbApi
-                .searchMovieByQuery(TMDBCredentials.TMDB_API_KEY, query, page);
-
-        responseCall.enqueue(new Callback<MovieSearchResponse>() {
-            @Override
-            public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
-                if (response.isSuccessful()) {
-                    List<MovieModel> movies = new ArrayList<>(response.body().getMovieList());
-                    listener.onResponseSuccess(movies);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
-                listener.onResponseFailure(t.getMessage());
-            }
-        });
-    }*/
-
 }

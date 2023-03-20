@@ -2,8 +2,8 @@ package com.example.app.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.app.firebase.FirebaseHelper;
 import com.example.app.tmdb.request.TMDBMovieApiClient;
+import com.example.tmdb.models.MovieGenreModel;
 import com.example.tmdb.models.MovieModel;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class TMDBMovieRepository
     private TMDBMovieApiClient mTMDBMovieApiClient;
 
     private String mQuery;
-    private int mPageNumber;
+    private int mGenreId, mPageNumber;
 
     private TMDBMovieRepository() {
         mTMDBMovieApiClient = TMDBMovieApiClient.getInstance();
@@ -29,14 +29,18 @@ public class TMDBMovieRepository
         return instance;
     }
 
-    public MutableLiveData<List<MovieModel>> getMovies() { return  mTMDBMovieApiClient.getMovies(); }
-    public void searchMovieApi(String query, int page) {
+    public MutableLiveData<List<MovieModel>> getMovies()      { return  mTMDBMovieApiClient.getMovies(); }
+    public MutableLiveData<List<MovieGenreModel>> getGenres() { return mTMDBMovieApiClient.getMovieGenres(); }
+    public void searchMovieGenresApi()                        { mTMDBMovieApiClient.searchMovieGenresApi(); }
+    public void searchMovieApi(String query, int genre_id, int page) {
         mQuery = query;
+        mGenreId = genre_id;
         mPageNumber = page;
-        mTMDBMovieApiClient.searchMoviesApi(query, page);
+        mTMDBMovieApiClient.searchMoviesApi(query, genre_id, page);
     }
     public void searchNextPage() {
-        searchMovieApi(mQuery, mPageNumber+1);
+        searchMovieApi(mQuery, mGenreId, mPageNumber+1);
     }
+    public void sortMoviesByVote(float rating) {mTMDBMovieApiClient.sortMoviesByVote(rating);}
 
 }

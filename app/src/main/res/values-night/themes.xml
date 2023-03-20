@@ -17,9 +17,14 @@
     </style>
 
     <style name="ToolBarTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:textColorSecondary">@color/colorPrimary</item>
-        <item name="android:tint">@color/colorPrimary</item>
-        <item name="iconTint">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/app_primary_color</item>
+        <item name="android:tint">@color/app_primary_color</item>
+        <item name="iconTint">@color/app_primary_color</item>
+    </style>
+
+    <style name="BottomSheetAnimation">
+        <item name="android:windowEnterAnimation">@anim/sheet_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/sheet_slide_out_bottom</item>
     </style>
 
 </resources>

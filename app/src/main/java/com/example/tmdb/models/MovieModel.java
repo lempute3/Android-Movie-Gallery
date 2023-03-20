@@ -7,33 +7,22 @@ import androidx.annotation.NonNull;
 
 import com.example.app.utils.AppCredentials;
 
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class MovieModel implements Parcelable {
 
-    private final String title, release_date, overview, poster_path, backdrop_path;
-    private final String [] genre_ids;
+    private String title, release_date, overview, poster_path, backdrop_path;
+    private List<String> genre_ids;
 
-    private final float vote_average;
-    private final int id;
+    private float vote_average;
+    private int id;
 
-    public MovieModel (
-            String title,
-            String releaseDate,
-            String movieOverview,
-            String posterPath,
-            String backdrop_path,
-            String[] genreIds,
-            float voteAverage,
-            int movieId
-    ) {
-        this.title = title;
-        this.release_date = releaseDate;
-        this.overview = movieOverview;
-        this.poster_path = posterPath;
-        this.backdrop_path = backdrop_path;
-        this.genre_ids = genreIds;
-        this.id = movieId;
-        this.vote_average = voteAverage;
-    }
+    public MovieModel() {}
 
     protected MovieModel(Parcel in) {
         this.title = in.readString();
@@ -41,19 +30,26 @@ public class MovieModel implements Parcelable {
         this.overview = in.readString();
         this.poster_path = in.readString();
         this.backdrop_path = in.readString();
-        this.genre_ids = in.createStringArray();
+        this.genre_ids = in.createStringArrayList();
         this.vote_average = in.readFloat();
         this.id = in.readInt();
     }
 
-    public String   getTitle()           { return this.title; }
-    public String   getReleaseDate()     { return this.release_date; }
-    public String   getMovieOverview()   { return this.overview; }
-    public String   getBackdropPath()    { return this.backdrop_path; }
-    public String[] getGenreIds()        { return this.genre_ids; }
-    public float    getVoteAverage()     { return this.vote_average; }
-    public int      getMovieId()         { return this.id; }
-    public String   getPosterPath()      { return String.format("%s%s", AppCredentials.TMDB_IMAGE_URL, this.poster_path); }
+
+
+    public String getRelease_date() {
+        if (this.release_date == null || this.release_date.isEmpty()) return "";
+        return this.release_date.substring(0, 4);
+    }
+
+    public String getTitle()            { return title; }
+    public String getOverview()         { return overview; }
+    public String getPoster_path()      { return String.format("%s%s", AppCredentials.TMDB_IMAGE_URL, this.poster_path); }
+    public String getBackdrop_path()    { return backdrop_path; }
+    public List<String> getGenre_ids()  { return genre_ids; }
+    public float getVote_average()      { return vote_average; }
+    public int getId()                  { return id; }
+
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
         @Override
@@ -78,7 +74,7 @@ public class MovieModel implements Parcelable {
         parcel.writeString(release_date);
         parcel.writeString(overview);
         parcel.writeString(poster_path);
-        parcel.writeStringArray(genre_ids);
+        parcel.writeStringList(genre_ids);
         parcel.writeFloat(vote_average);
         parcel.writeInt(id);
     }

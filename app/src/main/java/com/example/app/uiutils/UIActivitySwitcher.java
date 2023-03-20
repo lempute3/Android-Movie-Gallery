@@ -2,6 +2,7 @@ package com.example.app.uiutils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 public class UIActivitySwitcher {
     private Activity mCurrentActivity;

@@ -5,6 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class AppExecutors {
 
+    public static final int CANCEL_TIMEOUT_MILLIS = 3000;
     private static final int THREAD_POOL_SIZE = 3;
     private static AppExecutors instance;
 

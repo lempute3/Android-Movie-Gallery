@@ -1,7 +1,5 @@
 package com.example.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,14 +7,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.firebase.FirebaseHelper;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.app.firebase.OnTaskCompletionListener;
+import com.example.app.firebase.FirebaseRepository;
 import com.example.app.uiutils.UIActivitySwitcher;
 import com.example.app.utils.ValidationUtils;
 
 public class ResetActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseHelper firebaseHelper = FirebaseHelper.getInstance();
+    private FirebaseRepository firebaseHelper = FirebaseRepository.getInstance();
 
     private EditText mEmailInput;
     private Button mSendBtn;

@@ -1,7 +1,5 @@
 package com.example.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,15 +9,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.firebase.FirebaseHelper;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.app.firebase.FirebaseRepository;
 import com.example.app.firebase.OnTaskCompletionListener;
-import com.example.app.uiutils.UIPasswordToggler;
 import com.example.app.uiutils.UIActivitySwitcher;
+import com.example.app.uiutils.UIPasswordToggler;
 import com.example.app.utils.RememberMe;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseHelper mFirebaseHelper = FirebaseHelper.getInstance();
+    private FirebaseRepository mFirebaseHelper;
 
     private EditText mEmailInput, mPasswordInput;
     private Button mRegisterSectionBtn, mLoginBtn;
@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mFirebaseHelper = FirebaseRepository.getInstance();
 
         /*ACTIVITIES*/
         mMainActivity = new UIActivitySwitcher(this, MainActivity.class);
@@ -61,6 +63,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mRegisterSectionBtn.setOnClickListener(this);
         mForgotPasswordBtn.setOnClickListener(this);
         mShowPasswordCheck.setOnCheckedChangeListener(new UIPasswordToggler(mPasswordInput));
+
+        /*TEMP*/
+        mEmailInput.setText("admin@gmail.com");
+        mPasswordInput.setText("Admin*409");
     }
 
     void loginUser(String email, String password) {
@@ -121,8 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.l_login_btn:
-                /*loginUser(email, password);*/
-                mMainActivity.setScene();
+                loginUser(email, password);
                 break;
 
             default:

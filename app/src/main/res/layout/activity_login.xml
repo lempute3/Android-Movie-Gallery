@@ -55,10 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:autofillHints="emailAddress"
-            android:backgroundTint="@color/colorSecondary"
+            android:backgroundTint="@color/app_secondary_color"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorSecondary"
+            android:drawableTint="@color/app_secondary_color"
             android:hint="@string/formEmailHint"
             android:inputType="text" />
 
@@ -75,10 +75,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:autofillHints="password"
-                android:backgroundTint="@color/colorSecondary"
+                android:backgroundTint="@color/app_secondary_color"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="10dp"
-                android:drawableTint="@color/colorSecondary"
+                android:drawableTint="@color/app_secondary_color"
                 android:hint="@string/formPasswordHint"
                 android:inputType="textPassword" />
 
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/ic_visibility_selector"
-                android:buttonTint="@color/colorSecondary"
+                android:buttonTint="@color/app_secondary_color"
                 android:minWidth="0dp" />
 
         </LinearLayout>
@@ -100,7 +100,7 @@
             android:layout_height="25dp"
             android:layout_marginLeft="-24dp"
             android:layout_marginBottom="20dp"
-            android:buttonTint="@color/colorSecondary"
+            android:buttonTint="@color/app_secondary_color"
             android:scaleX="0.80"
             android:scaleY="0.80"
             android:text="@string/rememberMeCheckName"

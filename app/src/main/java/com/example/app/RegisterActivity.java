@@ -1,7 +1,5 @@
 package com.example.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,18 +10,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app.firebase.FirebaseHelper;
-import com.example.app.firebase.OnTaskCompletionListener;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app.uiutils.UIPasswordToggler;
+import com.example.app.firebase.FirebaseRepository;
+import com.example.app.firebase.OnTaskCompletionListener;
 import com.example.app.uiutils.UIActivitySwitcher;
+import com.example.app.uiutils.UIPasswordToggler;
 import com.example.app.utils.ValidationUtils;
 
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseHelper firebaseHelper = FirebaseHelper.getInstance();
+    private FirebaseRepository firebaseHelper = FirebaseRepository.getInstance();
 
     private EditText mUsernameInput, mEmailInput, mPasswordInput;
     private Button mLoginSectionBtn, mRegisterBtn;

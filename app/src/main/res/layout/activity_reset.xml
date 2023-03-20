@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="3dp"
             android:text="@string/resetFormName"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/app_primary_color"
             android:textSize="18sp"
             android:textStyle="bold"
             />
@@ -50,8 +50,8 @@
             android:layout_marginBottom="20dp"
             android:autofillHints="emailAddress"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorSecondary"
-            android:backgroundTint="@color/colorSecondary"
+            android:drawableTint="@color/app_secondary_color"
+            android:backgroundTint="@color/app_secondary_color"
             android:hint="@string/formEmailHint"
             android:inputType="textEmailAddress" />
 

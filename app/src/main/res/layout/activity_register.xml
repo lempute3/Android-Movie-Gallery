@@ -59,8 +59,8 @@
             android:autofillHints="email"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorSecondary"
-            android:backgroundTint="@color/colorSecondary"
+            android:drawableTint="@color/app_secondary_color"
+            android:backgroundTint="@color/app_secondary_color"
             android:hint="@string/formUsernameHint"
             android:inputType="text"
             />
@@ -74,8 +74,8 @@
             android:autofillHints="email"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorSecondary"
-            android:backgroundTint="@color/colorSecondary"
+            android:drawableTint="@color/app_secondary_color"
+            android:backgroundTint="@color/app_secondary_color"
             android:hint="@string/formEmailHint"
             android:inputType="textEmailAddress" />
 
@@ -94,8 +94,8 @@
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="10dp"
-                android:drawableTint="@color/colorSecondary"
-                android:backgroundTint="@color/colorSecondary"
+                android:drawableTint="@color/app_secondary_color"
+                android:backgroundTint="@color/app_secondary_color"
                 android:hint="@string/formPasswordHint"
                 android:autofillHints="password"
                 android:inputType="textPassword"
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
                 android:button="@drawable/ic_visibility_selector"
-                android:buttonTint="@color/colorSecondary"
+                android:buttonTint="@color/app_secondary_color"
                 />
 
         </LinearLayout>
