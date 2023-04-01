@@ -12,9 +12,9 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.app.firebase.FirebaseRepository;
-import com.example.app.firebase.OnMovieCheckListener;
-import com.example.app.firebase.OnTaskCompletionListener;
+import com.example.app.repositories.firebase.FirebaseRepository;
+import com.example.app.repositories.firebase.OnMovieCheckListener;
+import com.example.app.repositories.firebase.OnTaskCompletionListener;
 import com.example.tmdb.models.MovieModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;

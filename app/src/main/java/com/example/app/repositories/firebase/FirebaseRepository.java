@@ -1,4 +1,4 @@
-package com.example.app.firebase;
+package com.example.app.repositories.firebase;
 
 import android.util.Log;
 
@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.UUID;
 
 public class FirebaseRepository {
 
@@ -25,7 +25,7 @@ public class FirebaseRepository {
     private FirebaseAuth mAuth;
 
     private FirebaseDatabase mDatabase;
-    private DatabaseReference mUsersCollection, mUsersWatchlistCollection, mUsersFavouritesCollection;
+    private DatabaseReference mUsersCollection, mUsersWatchlistCollection, mTempUsersCollection, mUsersFavouritesCollection;
 
     private String mUserId;
     private MutableLiveData<List<MovieModel>> mUserWatchlist;
@@ -38,6 +38,7 @@ public class FirebaseRepository {
 
         mUsersCollection = mDatabase.getReference("Users");
         mUsersWatchlistCollection = mDatabase.getReference("Watchlist");
+        mTempUsersCollection = mDatabase.getReference("TempUsers");
         mUsersFavouritesCollection = mDatabase.getReference("Favourite");
     }
 
@@ -53,6 +54,21 @@ public class FirebaseRepository {
     }
     public void signOutUser() { mAuth.signOut(); }
 
+    private void getCollectionData(DatabaseReference collection, Class<?> modelClass, final OnDataFetchListener listener) {
+        collection.child(mUserId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Object data = snapshot.getValue(modelClass);
+                        if (data != null) listener.onFetchSuccess(data);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        listener.onFetchFailure(error.getMessage());
+                    }
+                });
+    }
 
     private void getMoviesFromCollection(DatabaseReference movieCollection, final OnMoviesDataFetchListener listener) {
         movieCollection.child(mUserId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -77,7 +93,7 @@ public class FirebaseRepository {
 
     private void checkMovieInCollection(DatabaseReference movieCollection, int movieId, final OnMovieCheckListener listener) {
         movieCollection.child(mUserId)
-                .orderByChild("movieId").equalTo(movieId)
+                .orderByChild("id").equalTo(movieId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -255,28 +271,21 @@ public class FirebaseRepository {
         });
     }
 
-    public MutableLiveData<List<MovieModel>> getUserWatchlist() {
-        return mUserWatchlist;
-    }
-
-    public void getCurrentUserData(final OnUserDataFetchListener listener)
+    public void getCurrentUserData(final OnDataFetchListener listener)
     /*  This method is used retrieve the current user's data from a
         firebase realtime database collection. */
     {
-        String userID = mAuth.getCurrentUser().getUid();
-        mUsersCollection.child(userID)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        FirebaseUserModel user = snapshot.getValue(FirebaseUserModel.class);
-                        if (user != null) listener.onFetchSuccess(user);
-                    }
+        getCollectionData(mUsersCollection, FirebaseUserModel.class, new OnDataFetchListener() {
+            @Override
+            public void onFetchSuccess(Object obj) {
+                listener.onFetchSuccess(obj);
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        listener.onFetchFailure(error.getMessage());
-                    }
-                });
+            @Override
+            public void onFetchFailure(String message) {
+                listener.onFetchFailure(message);
+            }
+        });
     }
 
     public void loginUser(String email, String password, final OnTaskCompletionListener listener)
@@ -297,12 +306,17 @@ public class FirebaseRepository {
     /* This method is used to register a new user in a Firebase database
        by creating a new user in Firebase authentication and storing the user's information in the database. */
     {
-        FirebaseUserModel user = new FirebaseUserModel(email, username);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
-                    mUsersCollection.child(mAuth.getCurrentUser().getUid()).setValue(user)
-                            .addOnSuccessListener(aVoid -> listener.onSuccess())
-                            .addOnFailureListener(e -> listener.onFailure(e.getMessage()));
+                    if (task.isSuccessful()) {
+                        String accessToken = mAuth.getCurrentUser().getIdToken(false).getResult().getToken();
+                        FirebaseUserModel user = new FirebaseUserModel(accessToken, email, username);
+                        mUsersCollection.child(mAuth.getCurrentUser().getUid()).setValue(user)
+                                .addOnSuccessListener(aVoid -> listener.onSuccess())
+                                .addOnFailureListener(e -> listener.onFailure(e.getMessage()));
+                    } else {
+                        listener.onFailure(task.getException().getMessage());
+                    }
                 });
     }
 
@@ -317,18 +331,17 @@ public class FirebaseRepository {
                 });
     }
 
-    public CompletableFuture<Boolean> userEmailVerify() {
-        CompletableFuture<Boolean> future = new CompletableFuture<>();
+    public void generateTempAccessKey(final OnDataFetchListener listener) {
+        String accessKey = UUID.randomUUID().toString();
+        long timestamp = System.currentTimeMillis();
+        FirebaseTempUserModel tempUser = new FirebaseTempUserModel(mUserId, accessKey, timestamp);
 
-        mAuth.getCurrentUser().sendEmailVerification()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        future.complete(true);
-                    } else {
-                        future.complete(false);
-                    }
-                });
+        mTempUsersCollection.child(mUserId).setValue(tempUser)
+                .addOnSuccessListener(aVoid -> listener.onFetchSuccess(tempUser))
+                .addOnFailureListener(e -> listener.onFetchFailure(e.getMessage()));
+    }
 
-        return future;
+    public MutableLiveData<List<MovieModel>> getUserWatchlist() {
+        return mUserWatchlist;
     }
 }

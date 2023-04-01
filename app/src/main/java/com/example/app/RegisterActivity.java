@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app.firebase.FirebaseRepository;
-import com.example.app.firebase.OnTaskCompletionListener;
+import com.example.app.repositories.firebase.FirebaseRepository;
+import com.example.app.repositories.firebase.OnTaskCompletionListener;
 import com.example.app.uiutils.UIActivitySwitcher;
 import com.example.app.uiutils.UIPasswordToggler;
 import com.example.app.utils.ValidationUtils;

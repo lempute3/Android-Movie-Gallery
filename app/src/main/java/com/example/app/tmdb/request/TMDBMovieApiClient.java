@@ -15,6 +15,7 @@ import com.example.tmdb.models.MovieModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -93,7 +94,9 @@ public class TMDBMovieApiClient {
 
         List<MovieModel> sortedMovies = movieModels.stream()
                 .filter(movie -> movie.getVote_average() <= newRating)
+                .sorted(Comparator.comparingDouble(MovieModel::getVote_average).reversed())
                 .collect(Collectors.toList());
+
         mMovies.setValue(sortedMovies);
     }
 

@@ -11,8 +11,10 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class MovieModel implements Parcelable {
 
@@ -34,8 +36,6 @@ public class MovieModel implements Parcelable {
         this.vote_average = in.readFloat();
         this.id = in.readInt();
     }
-
-
 
     public String getRelease_date() {
         if (this.release_date == null || this.release_date.isEmpty()) return "";

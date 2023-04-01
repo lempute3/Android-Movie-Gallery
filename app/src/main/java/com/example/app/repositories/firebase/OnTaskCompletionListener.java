@@ -1,4 +1,4 @@
-package com.example.app.firebase;
+package com.example.app.repositories.firebase;
 
 public interface OnTaskCompletionListener {
     void onSuccess();

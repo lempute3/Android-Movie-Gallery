@@ -29,9 +29,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.app.firebase.FirebaseRepository;
-import com.example.app.firebase.FirebaseUserModel;
-import com.example.app.firebase.OnUserDataFetchListener;
+import com.example.app.repositories.firebase.FirebaseRepository;
+import com.example.app.repositories.firebase.FirebaseUserModel;
+import com.example.app.repositories.firebase.OnDataFetchListener;
 import com.example.app.uiutils.UIActivitySwitcher;
 import com.example.app.uiutils.UIFragmentSwitcher;
 import com.example.app.viewmodels.MovieListViewModel;
@@ -94,9 +94,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNavProfileCircleLabel = findViewById(R.id.m_profile_circle_label);
 
         /*--------------*/
-        mFirebaseRepository.getCurrentUserData(new OnUserDataFetchListener() {
+        mFirebaseRepository.getCurrentUserData(new OnDataFetchListener() {
             @Override
-            public void onFetchSuccess(FirebaseUserModel user) {
+            public void onFetchSuccess(Object obj) {
+
+                FirebaseUserModel user = (FirebaseUserModel) obj;
 
                 String username = user.getUsername();
                 String nameAlphabet = String.valueOf(user.getUsername().charAt(0)).toUpperCase();

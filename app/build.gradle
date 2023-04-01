@@ -18,6 +18,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -40,6 +43,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    // Lombok helps to reduce boilerplate code by automatically generating getter, setter, constructor, and other commonly used methods in Java classes.
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
     // Retrofit - is a type-safe HTTP client for Android and Java
     // Retrofit is the class through which your API interfaces are turned into callable objects.
     // By default, Retrofit will give you sane defaults for your platform but it allows for customization.
@@ -60,4 +67,8 @@ dependencies {
     // Picasso
     // Image downloading and caching library.
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    /*TESTING*/
+    // Mockk framework
+    testImplementation 'junit:junit:4.13.2'
 }

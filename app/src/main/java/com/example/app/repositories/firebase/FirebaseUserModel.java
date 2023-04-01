@@ -1,4 +1,4 @@
-package com.example.app.firebase;
+package com.example.app.repositories.firebase;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FirebaseUserModel {
 
-    private String email, username;
+    private String access_token, email, username;
 
     public FirebaseUserModel() {}
 }
