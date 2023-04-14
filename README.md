@@ -1,6 +1,6 @@
 # Android-Movie-Gallery
 
-<p float="center">
+<p float="left" align="center">
   <img src="https://user-images.githubusercontent.com/21333005/232023963-d9570a06-733e-4ccf-9457-22fe71dc209a.gif" width="200" />
   <img src="https://user-images.githubusercontent.com/21333005/232023989-01115bdd-a5ab-4234-914e-458aedf57dd8.gif" width="200" /> 
   <img src="https://user-images.githubusercontent.com/21333005/232024018-ad14b488-cc85-4ce4-a44a-f14db1b51b73.gif" width="200" />
