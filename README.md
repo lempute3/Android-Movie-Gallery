@@ -1,4 +1,5 @@
-# Android-Movie-Gallery
+# FlickFrame: Movie Gallery App
+FlickFrame is an Android application that allows users to log in and register into movie gallery system. This mobile application provides users with detailed information on the latest movies, TV shows, and series. FlickFrame offers a centralized place where users can create and manage watchlists of their favorite movies and TV shows, as well as get detailed information about them.
 
 <p float="left" align="center" padding="10px">
   <img src="https://user-images.githubusercontent.com/21333005/232023963-d9570a06-733e-4ccf-9457-22fe71dc209a.gif" width="230" />
