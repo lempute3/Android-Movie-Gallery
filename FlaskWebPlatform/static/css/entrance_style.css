@@ -1,0 +1,63 @@
+
+.container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+body {
+    background-color: var(--background-color);
+    color: white;
+}
+
+form {
+    background-color: var(--form-background-color);
+    padding: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid var(--primary-color);
+    box-sizing: border-box;
+    background-color: #1f1f1e;
+    color: white;
+}
+
+input:focus {
+    outline: none !important;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    margin: 15px 0px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-radius: 5px;
+}
+
+.message-field {
+    text-align: left;
+}
+
+.message-field ul {
+    list-style: none;
+}
+
+.message-field ul li::before {
+    content: "\2022";
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 2em;
+    margin-left: -2em;
+}

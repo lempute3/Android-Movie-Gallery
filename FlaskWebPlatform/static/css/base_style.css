@@ -1,0 +1,44 @@
+:root {
+    --primary-color: #ff8906;
+    --secondary-color: #f25f4c;
+    --background-color: #121313;
+    --form-background-color: #1f1f1e;
+    --card-background-color: #1f1f1e;
+    --header-background-color: #1f1f1e;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #593A18;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-color);
+    color: white;
+}
+
+.header {
+    background-color: var(--header-background-color);
+    text-transform: uppercase;
+}
+
+.header .header-title {
+    color: var(--primary-color);
+}
+
+.header .header-title:hover {
+    color:#593A18;
+}
+
+.header-items a {
+    color: white !important;;
+}

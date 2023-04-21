@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+{% block title%}Watchlist{% endblock %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/watchlist_style.css') }}">{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    {% if watchlist %}
+        <div class="row">
+            {% for movie in watchlist.values() %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.title }} ({{ movie.release_date }})</h5>
+                            <div class="stars" style="--rating:{{ movie.vote_average / 2}};"></div>
+                            <p class="card-text">{{ movie.overview }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Your watchlist is empty!
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,41 @@
+
+
+/* CARD VIEW */
+.card {
+    background-color: var(--card-background-color);
+    color: #e3e3e3;
+}
+
+.card-img-top {
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-text {
+    overflow-y: auto;
+    max-height: 200px;
+    color: #e3e3e3;
+}
+
+
+/* RATING BAR */
+.stars {
+    --star-size: 20px;
+    --star-color: #ff8906;
+    --star-background: #593A18;
+    --percent: calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+    line-height: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.stars::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-color) var(--percent), var(--star-background) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

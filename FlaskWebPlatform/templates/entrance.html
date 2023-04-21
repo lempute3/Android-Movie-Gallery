@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% block title%}Entrance{% endblock %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/entrance_style.css') }}">{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row text-white">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+            <div class="px-2">
+                <form method="POST" action="{{ url_for('submit_form') }}" class="justify-content-center">
+                    <div class="form-group">
+                        <input type="text" name="access_token" placeholder="Access token">
+                    </div>
+                    <button type="submit">Submit</button>
+                    <div class="message-field">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <ul class=flashes>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
