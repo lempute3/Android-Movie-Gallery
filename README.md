@@ -15,6 +15,8 @@ FlickFrame is an Android application that allows users to log in and register in
 
 ## Technologies Used
 - Android Studio
-- Java
-- TMDB API
 - Firebase Realtime Database
+- TMDB API
+- Java
+- Python
+- Flask
